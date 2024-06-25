@@ -23,6 +23,8 @@ services:
       MYSQL_PASSWORD: siaoobjv  # Assurez-vous que le mot de passe correspond à votre configuration
     ports:
       - "3306:3306"
+    volumes:
+      - ./mysql-init:/docker-entrypoint-initdb.d
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
