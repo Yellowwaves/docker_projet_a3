@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: apache-php-python
+    ports:
+      - "80:80"
+    volumes:
+      - ./src:/var/www/html
+      - ./cgi-bin:/usr/lib/cgi-bin
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: etu124   # Assurez-vous que le nom de la base de données ici correspond à votre configuration
+      MYSQL_USER: etu124       # Assurez-vous que le nom d'utilisateur correspond à votre configuration
+      MYSQL_PASSWORD: siaoobjv  # Assurez-vous que le mot de passe correspond à votre configuration
+    ports:
+      - "3306:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: example
+    ports:
+      - "8080:80"
+    depends_on:
+      - db

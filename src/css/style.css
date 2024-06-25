@@ -1,0 +1,202 @@
+/* Définition des couleurs personnalisées */
+:root {
+  --primary-color: #005c9e;
+  --secondary-color: #56c7ff;
+  --accent-color: #ff5f00;
+}
+
+body {
+    font-family: "Nom de la police", Helvetica;
+}
+
+#loadingIndicator {
+  display: none;
+  /* Ajoutez ici les styles de votre indicateur de chargement */
+}
+/* Barre de navigation fixe */
+.navbar {
+  /* position: fixed; */
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+/* Animation au survol des éléments de la barre de navigation */
+.navbar-nav .nav-link {
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--secondary-color);
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-item::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: width 0.5s ease-in-out;
+  transform-origin: left;
+}
+
+.nav-item:hover::after {
+  width: 100%;
+}
+
+/* Animation au survol des cards */
+.card-index:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.card-index {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.card-body {
+  flex-grow: 1;
+}
+
+.card-title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.card-img-top {
+  height: 200px; /* Ajustez cette valeur selon vos besoins */
+  object-fit: cover;
+}
+
+
+/* Animation et changement de couleur des boutons au survol */
+.btn-primary:hover {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+/* Paragraphe de présentation stylisé */
+.jumbotron {
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 0.3rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Footer en bas de la page */
+footer {
+  /* position: fixed; */
+  bottom: 0;
+  width: 100%;
+}
+
+/* Styles spécifiques pour le texte du footer */
+footer p {
+  color: white;
+  font-size: 14px;
+}
+
+footer p.mb-0 {
+  margin-bottom: 0;
+}
+
+.espaceindex {
+  padding-top: 70px;
+}
+
+/* creation.html */
+.espacecreation {
+  padding-top: 10px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.mb-3{
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+/* CSS pour le tableau de liste.html */
+#liste_accident {
+  width: 75%;
+  border-collapse: collapse;
+}
+
+#liste_accident th,
+#liste_accident td {
+  padding: 8px;
+  text-align: left;
+}
+
+#liste_accident th {
+  background-color: #f2f2f2;
+}
+
+#liste_accident tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#liste_accident tbody tr:hover {
+  background-color: var(--secondary-color);
+}
+
+.tableAccident {
+  width: 80%;
+}
+
+.filtre {
+  width: 90%;
+  margin-bottom: 0;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  background-color: #333;
+
+  margin: 100px auto;
+  -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+  animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-rotateplane {
+  0% { -webkit-transform: perspective(120px) }
+  50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+}
+
+@keyframes sk-rotateplane {
+  0% { 
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg) 
+  } 50% { 
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg) 
+  } 100% { 
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}

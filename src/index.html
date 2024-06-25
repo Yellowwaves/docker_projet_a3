@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Page d'accueil</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</head>
+<body class="index-page">
+    <!-- Menu de navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <img src="img/logo.png" alt="Logo" width="50" height="30" class="d-inline-block align-top">
+            <a class="navbar-brand" href="index.html">Accueil</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="creation.html">Ajout d'accidents</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="liste.html">Tableau des accidents</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="carte.html">Carte des accidents</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenu de la page -->
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Projet Développement Web</h1>
+            <p class="lead">Elouan Teissere - Lucas Le Bihan</p>
+            <hr class="my-4">
+            <p>Dans le cadre de notre projet de troisième année à l'ISEN Yncréa Ouest, nous avons réalisé un site web sur l'accidentologie.
+                Ce site web permet de visualiser les accidents survenus en France en 2009, et de prédire le cluster dans lequel se trouve un accident donné.
+                Pour cela nous avons perfectionné nos notions de big data et d'IA pour arriver à ce résultat.
+            </p>
+        </div>
+
+        <!-- Blocs -->
+        <div class="row">
+            <!-- Bloc 1 : Ajout d'accidents -->
+            <div class="col-md-4">
+                <div class="card-index d-flex mb-4">
+                    <img class="card-img-top" src="img/ajout.jpg" alt="Ajout d'accident">
+                    <div class="card-body">
+                        <h3 class="card-title">Ajout d'accidents</h3>
+                        <p class="card-text">Permet d'ajouter de nouveaux accidents à la base de données.</p>
+                        <a href="creation.html" class="btn btn-primary">Ajouter des accidents</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bloc 2 : Prédiction du cluster -->
+            <div class="col-md-4">
+                <div class="card-index d-flex mb-4">
+                    <img class="card-img-top" src="img/clustering.png" alt="Clustering">
+                    <div class="card-body">
+                        <h3 class="card-title">Tableau des Accidents</h3>
+                        <p class="card-text">Permet aussie de prédire le cluster et la gravité d'un accident</p>
+                        <a href="liste.html" class="btn btn-primary">Aller au tableau des accidents</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bloc 3 : Visualisation des accidents -->
+            <div class="col-md-4">
+                <div class="card-index d-flex mb-4">
+                    <img class="card-img-top" src="img/visualisation.PNG" alt="Visualisation">
+                    <div class="card-body">
+                        <h3 class="card-title">Visualisation</h3>
+                        <p class="card-text">Permet de filtrer et visualiser les accidents sur une carte.</p>
+                        <a href="carte.html" class="btn btn-primary">Accéder à la carte</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="espaceindex"></div>
+    <footer class="text-center bg-dark text-light py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p class="mb-0">Elouan Teissere et Lucas Le Bihan</p>
+                    <p class="mb-0">Projet A3-Web</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

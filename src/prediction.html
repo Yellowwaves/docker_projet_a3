@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="js/prediction.js"></script>
+    <title>Page de prédiction</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <img src="img/logo.png" alt="Logo" width="50" height="30" class="d-inline-block align-top">
+            <a class="navbar-brand" href="index.html">Accueil</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="creation.html">Ajout d'accidents</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="liste.html">Tableau des accidents</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="carte.html">Carte des accidents</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenu de la page -->
+    <div class="container">
+        <a href="liste.html" class="link-info">Retour</a>
+        <h1>Prédiction de la gravité</h1>
+        <table id="accidentsTable" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Accident ID</th>
+                    <th>Gravité (KNN)</th>
+                    <th>Gravité (RF)</th>
+                    <th>Gravité (SVM)</th>
+                    <th>Gravité (MLP)</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div class="spinner" id="loadingIndicator"> </div>
+        <div class="row mt-5">
+            <div class="col-md-3">
+                <h2>Méthode KNN</h2>
+                <p>Le K-Nearest Neighbors (KNN) est un algorithme de classification utilisé pour prédire la gravité des accidents. Il se base sur le principe de trouver les K voisins les plus proches d'un point donné dans l'espace des caractéristiques pour déterminer sa classe.</p>
+            </div>
+            <div class="col-md-3">
+                <h2>Méthode RF</h2>
+                <p>La Random Forest (RF) est une méthode d'apprentissage automatique utilisée pour prédire la gravité des accidents. Elle combine plusieurs arbres de décision indépendants et utilise un mécanisme de vote pour prendre la décision finale.</p>
+            </div>
+            <div class="col-md-3">
+                <h2>Méthode SVM</h2>
+                <p>Les Machines à Vecteurs de Support (SVM) sont des modèles d'apprentissage automatique utilisés pour prédire la gravité des accidents. Ils sont basés sur le concept de trouver un hyperplan optimal qui sépare les données en différentes classes.</p>
+            </div>
+            <div class="col-md-3">
+                <h2>Méthode MLP</h2>
+                <p>Les Multi-Layer Perceptrons (MLP) sont des réseaux de neurones artificiels utilisés pour prédire la gravité des accidents. Ils sont constitués de plusieurs couches de neurones et utilisent des fonctions d'activation pour approximer des fonctions complexes.</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    <footer class="footer text-center bg-dark text-light py-3 fixed-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p class="mb-0">Elouan Teissere et Lucas Le Bihan</p>
+                    <p class="mb-0">Projet A3-Web</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

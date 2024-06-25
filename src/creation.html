@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Création</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="js/creation.js"></script>
+</head>
+
+<body class="creation-page">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <img src="img/logo.png" alt="Logo" width="50" height="30" class="d-inline-block align-top">
+            <a class="navbar-brand" href="index.html">Accueil</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="creation.html">Ajout d'accidents</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="liste.html">Tableau des accidents</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="carte.html">Carte des accidents</a>
+                    </li>
+                    <li class="nav-item">
+                        <button id="logout">Déconnexion</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="output"></div>
+    <div class="container">
+        <div id="creation">
+            <form id="form" action="" method="POST">
+                <h1 class="text-center">Ajouter un accident</h1>
+                <div class="mb-3">
+                    <label for="age_cond" class="form-label">Age du conducteur*</label>
+                    <input type="number" class="form-control" name="age_cond" required="required">
+                </div>
+                <div class="mb-3">
+                    <label for="date" class="form-label">Date*</label>
+                    <input type="datetime-local" class="form-control" id="my-date-input" name="date" required="required">
+                </div>
+
+                <div class="mb-3">
+                    <label for="ville" class="form-label">Ville*</label>
+                    <select name="ville" id="ville" class="form-select">
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="lat" class="form-label">Latitude*</label>
+                    <input type="number" class="form-control" name="lat" step="any" required="required">
+                </div>
+
+                <div class="mb-3">
+                    <label for="lon" class="form-label">Longitude*</label>
+                    <input type="number" class="form-control" name="lon" step="any" required="required">
+                </div>
+
+                <div class="mb-3">
+                    <label for="cond_ath" class="form-label">Conditions athmosphériques*</label>
+                    <select name="cond_ath" class="form-select">
+                        <option value="1">Brouillard – fumée</option>
+                        <option value="2">Neige – grêle</option>
+                        <option value="3">Pluie forte</option>
+                        <option value="4">Normale</option>
+                        <option value="5">Autre</option>
+                        <option value="6">Temps éblouissant</option>
+                        <option value="7">Pluie légère</option>
+                        <option value="8">Temps couvert</option>
+                        <option value="9">Vent fort – tempête</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="cond_lum" class="form-label">Luminosité*</label>
+                    <select name="cond_lum" class="form-select">
+                        <option value="1">Plein jour</option>
+                        <option value="2">Crépuscule ou aube</option>
+                        <option value="3">Nuit sans éclairage public</option>
+                        <option value="4">Nuit avec éclairage public non allumé</option>
+                        <option value="5">Nuit avec éclairage public allumé</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="etat_surf" class="form-label">Etat surface*</label>
+                    <select name="etat_surf" class="form-select">
+                        <option value="1">Verglacée</option>
+                        <option value="2">Mouillée</option>
+                        <option value="3">Normale</option>
+                        <option value="4">Autre</option>
+                        <option value="5">Enneigée</option>
+                        <option value="6">Flaques</option>
+                        <option value="7">Corps gras – huile</option>
+                        <option value="8">Boue</option>
+                        <option value="9">Inondée</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="dispo_secu" class="form-label">Sécurité*</label>
+                    <select name="dispo_secu" class="form-select">
+                        <option value="1">Autre - Non déterminable</option>
+                        <option value="2">Autre - Non utilisé</option>
+                        <option value="3">Autre - Utilisé</option>
+                        <option value="4">Présence d'un casque - Utilisation non déterminable</option>
+                        <option value="5">Présence d'un casque non utilisé</option>
+                        <option value="6">Présence d'un dispositif enfant non utilisé</option>
+                        <option value="7">Présence d'un équipement réfléchissant non utilisé</option>
+                        <option value="8">Présence d'une ceinture de sécurité - Utilisation non déterminable</option>
+                        <option value="9">Présence de ceinture de sécurité non utilisée</option>
+                        <option value="10">Présence dispositif enfant - Utilisation non déterminable</option>
+                        <option value="11">Présence équipement réfléchissant - Utilisation non déterminable</option>
+                        <option value="12">Utilisation d'un casque</option>
+                        <option value="13">Utilisation d'un dispositif enfant</option>
+                        <option value="14">Utilisation d'un équipement réfléchissant</option>
+                        <option value="15">Utilisation d'une ceinture de sécurité</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="id_cat_veh" class="form-label">Catégorie du véhicule*</label>
+                    <select name="id_cat_veh" class="form-select">
+                        <option value="1">Autobus</option>
+                        <option value="2">Autocar</option>
+                        <option value="3">Autre véhicule</option>
+                        <option value="4">Bicyclette</option>
+                        <option value="5">Cyclomoteur &lt;50cm3</option>
+                        <option value="6">Engin spécial</option>
+                        <option value="7">Motocyclette > 125 cm3</option>
+                        <option value="8">Motocyclette > 50 cm3 et &lt;= 125 cm3</option>
+                        <option value="9">PL > 3,5T + remorque</option>
+                        <option value="10">PL seul > 7,5T</option>
+                        <option value="11">PL seul 3,5T &lt;PTCA &lt;= 7,5T</option>
+                        <option value="12">Quad léger &lt;= 50 cm3 (Quadricycle à moteur non carrossé)</option>
+                        <option value="13">Quad lourd > 50 cm3 (Quadricycle à moteur non carrossé)</option>
+                        <option value="14">Scooter &lt; 50 cm3</option>
+                        <option value="15">Scooter > 125 cm3</option>
+                        <option value="16">Scooter > 50 cm3 et &lt;= 125 cm3</option>
+                        <option value="17">Tracteur agricole</option>
+                        <option value="18">Tracteur routier + semi-remorque</option>
+                        <option value="19">Tracteur routier seul</option>
+                        <option value="20">Train</option>
+                        <option value="21">Tramway</option>
+                        <option value="22">VL seul</option>
+                        <option value="23">Voiturette (Quadricycle à moteur carrossé)</option>
+                        <option value="24">VU seul 1,5T &lt;= PTAC &lt;= 3,5T avec ou sans remorque</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="id_type_col" class="form-label">Type de collision*</label>
+                    <select name="id_type_col" class="form-select">
+                        <option value="1">Autre collision</option>
+                        <option value="2">Deux véhicules - Frontale</option>
+                        <option value="3">Deux véhicules – Par l’arrière</option>
+                        <option value="4">Deux véhicules – Par le coté</option>
+                        <option value="5">Sans collision</option>
+                        <option value="6">Trois véhicules et plus – Collisions multiples</option>
+                        <option value="7">Trois véhicules et plus – En chaîne</option>
+                    </select>
+                </div>
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary" id="submit">Valider</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="espacecreation"></div>
+    <footer class="text-center bg-dark text-light py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p class="mb-0">Elouan Teissere et Lucas Le Bihan</p>
+                    <p class="mb-0">Projet A3-Web</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
