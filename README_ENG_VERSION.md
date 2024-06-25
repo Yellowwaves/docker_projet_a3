@@ -19,7 +19,7 @@ Facilitates filtering and visualizing accidents on an interactive map.
 ## Prerequisites and Installation
 To run the project locally, ensure you have the following prerequisites installed:
 - Docker environment for managing containers.
-
+You can download Docker and Docker-compose from this link https://docs.docker.com/desktop/install/windows-install/
 Clone the project from the Git repository and follow the instructions in the README.md file to start the environment.
 
 ## Usage
