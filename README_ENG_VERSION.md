@@ -32,7 +32,6 @@ cd docker_projet_a3
 2. **Build with Docker Compose and Initialize Database**
 ```bash
 docker-compose up --build
-docker exec -i mysql bash -c 'mysql -uroot -pexample < /docker-entrypoint-initdb.d/init.sql'
 ```
 3. **Access Web Pages**
 Once the containers are running, you can access the services via the following URLs:

@@ -34,7 +34,6 @@ Clonez le projet depuis le repository Git et suivez les instructions du fichier 
 2. **Build avec docker compose et initialisation BDD**
   ```bash
   docker-compose up --build
-  docker exec -i mysql bash -c 'mysql -uroot -pexample < /docker-entrypoint-initdb.d/init.sql'
   ```
 2. **Accéder au pages web**
 Une fois que les conteneurs sont en cours d'exécution, vous pouvez accéder aux services via les URL suivantes :
