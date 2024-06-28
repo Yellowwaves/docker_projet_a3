@@ -28,7 +28,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Activer les modules Apache nécessaires
-RUN a2enmod rewrite cgi fcgid wsgi
+RUN a2enmod rewrite cgi fcgid wsgi headers
 
 # Configurer Apache pour exécuter des scripts CGI
 RUN echo "ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/" >> /etc/apache2/conf-enabled/serve-cgi-bin.conf

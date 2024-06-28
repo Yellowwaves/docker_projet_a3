@@ -28,11 +28,32 @@ $(document).ready(function () {
         });
     }, 'json');
 
+    // Récupération du jeton CSRF
+    var csrfToken = "";
+
+    // Requête AJAX pour récupérer le jeton CSRF
+    $.ajax({
+        url: "php/csrf_token.php", // Assurez-vous d'ajuster le chemin vers votre fichier CSRF PHP
+        type: "GET",
+        success: function(response) {
+            csrfToken = response;
+            $("#csrf_token").val(csrfToken); // Mettre à jour la valeur du champ CSRF dans le formulaire
+        },
+        error: function(xhr, status, error) {
+            console.error("Erreur lors de la récupération du jeton CSRF:", error);
+            // Gestion de l'erreur (redirection ou autre)
+        }
+    });
     $("#submit").on('click', function () {
+        // Récupérez le jeton CSRF depuis le formulaire
+    
         $.ajax({
             url: 'php/creation.php',
             type: "POST",
-            data: $("#form").serialize(),
+            data: $("#form").serialize(), // Inclure le jeton CSRF
+            headers: {
+                'X-CSRF-Token': csrfToken // Utilisation du jeton CSRF dans les en-têtes de requête
+            },
             success: function (result) {
                 result = JSON.parse(result);
                 location.href = result['redirect'];
@@ -42,7 +63,6 @@ $(document).ready(function () {
             }
         });
     });
-
     // Gestionnaire d'événement pour le bouton de déconnexion
     $("#logout").on('click', function () {
         $.ajax({

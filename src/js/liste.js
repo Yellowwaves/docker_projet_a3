@@ -1,6 +1,7 @@
 // Elouan Teissere - Lucas Le Bihan
 
 $(document).ready(function() {
+
     $.get('php/dynamic_select.php', function (data) {//meme fonctionnement que carte.js, au lieu d'afficher une map on affiche un table
                                                     //voir en bas du code
         // Filtre 'ville
@@ -61,6 +62,10 @@ $(document).ready(function() {
     $('#bdd').val($.cookie('bdd'));
   
     // Fonction pour filtrer les accidents
+    // Récupération du jeton CSRF
+    var csrfToken = "";
+
+    // Requête AJAX pour récupérer le jeton CSRF
     function filtrerAccidents() {
       var age = $('#age').val();
       var gravite = $('#gravite').val();
@@ -89,12 +94,15 @@ $(document).ready(function() {
       $.cookie('limit', limit);
       $.cookie('bdd', bdd);
 
-
+      
         $.ajax({
             url: 'php/filtre.php',
             method: 'POST',
             data: { age: age, gravite: gravite, ville: ville, date: date, athmo: athmo, lum: lum, etat_surf: etat_surf, securite: securite, cat_veh: cat_veh, collision: collision, limit: limit, bdd: bdd},
             dataType: 'json',
+            headers: {
+                'X-CSRF-Token': csrfToken // Utilisation du jeton CSRF dans les en-têtes de requête
+            },
             success: function (data) {
                 var tbody = $('#liste_accident tbody'); //on va remplir le tbody avec des accidents
                 tbody.empty(); // Effacer le contenu précédent de la table
@@ -127,7 +135,20 @@ $(document).ready(function() {
 
     
     $('#filterBtn').click(function() {
-        filtrerAccidents();
+        $.ajax({
+            url: "php/csrf_token.php", // Assurez-vous d'ajuster le chemin vers votre fichier CSRF PHP
+            type: "GET",
+            success: function(response) {
+                csrfToken = response;
+                $("#csrf_token").val(csrfToken); // Mettre à jour la valeur du champ CSRF dans le formulaire
+                // Une fois le jeton CSRF récupéré, appeler la fonction pour filtrer les accidents
+                filtrerAccidents();
+            },
+            error: function(xhr, status, error) {
+                console.error("Erreur lors de la récupération du jeton CSRF:", error);
+                // Gestion de l'erreur (redirection ou autre)
+            }
+          });
     });
     $('#cluster').click(function() {
         window.location.href = "cluster.html";  
@@ -141,6 +162,18 @@ $(document).ready(function() {
         var selectedPred = $('input[name="radio_predict"]:checked').val();
         window.location.href = "prediction.html?acc_id=" + selectedPred + "&bdd=" + bdd;
       });
-    filtrerAccidents(); //on appelle filtrer accident une premiere fois pour trouver nos accidents de base
+      $.ajax({
+        url: "php/csrf_token.php", // Assurez-vous d'ajuster le chemin vers votre fichier CSRF PHP
+        type: "GET",
+        success: function(response) {
+            csrfToken = response;
+            $("#csrf_token").val(csrfToken); // Mettre à jour la valeur du champ CSRF dans le formulaire
+            // Une fois le jeton CSRF récupéré, appeler la fonction pour filtrer les accidents
+            filtrerAccidents();
+        },
+        error: function(xhr, status, error) {
+            console.error("Erreur lors de la récupération du jeton CSRF:", error);
+            // Gestion de l'erreur (redirection ou autre)
+        }
+      });
 });
-

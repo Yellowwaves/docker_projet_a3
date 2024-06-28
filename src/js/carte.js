@@ -4,6 +4,8 @@ mapboxgl.accessToken =
   "pk.eyJ1IjoiZWxvdWFudCIsImEiOiJjbHZtNmQ3dXgybnB5MnJwNnZuZXc1aGRqIn0.IfS0GAp6yiHak2ALm8_yKA";
 
 $(document).ready(function () {
+  // Génération d'un jeton CSRF
+
   $.get(
     "php/dynamic_select.php", //recuperation du contenu des select dynamiques
     function (data) {
@@ -98,9 +100,11 @@ $(document).ready(function () {
   $("#collision").val($.cookie("collision"));
   $("#limit").val($.cookie("limit"));
   $("#bdd").val($.cookie("bdd"));
+  var csrfToken = "";
 
   // Fonction pour filtrer les accidents
   function filtrerAccidents() {
+  
     var age = $("#age").val(); //on recupere le contenu des options
     var gravite = $("#gravite").val();
     var ville = $("#ville").val();
@@ -142,9 +146,12 @@ $(document).ready(function () {
         cat_veh: cat_veh,
         collision: collision,
         limit: limit,
-        bdd: bdd,
+        bdd: bdd
       },
       dataType: "json",
+      headers: {
+        'X-CSRF-Token': csrfToken // Utilisation du jeton CSRF dans les en-têtes de requête
+    },
       success: function (data) {
         initializeMap(data); // on initialise la map
       },
@@ -155,9 +162,35 @@ $(document).ready(function () {
   }
 
   $("#filterBtn").click(function () { //quand on clique sur fitrerBtn, on lance le filtrage et l'affichage de la map
-    filtrerAccidents();
+    $.ajax({
+      url: "php/csrf_token.php", // Assurez-vous d'ajuster le chemin vers votre fichier CSRF PHP
+      type: "GET",
+      success: function(response) {
+          csrfToken = response;
+          $("#csrf_token").val(csrfToken); // Mettre à jour la valeur du champ CSRF dans le formulaire
+          // Une fois le jeton CSRF récupéré, appeler la fonction pour filtrer les accidents
+          filtrerAccidents();
+      },
+      error: function(xhr, status, error) {
+          console.error("Erreur lors de la récupération du jeton CSRF:", error);
+          // Gestion de l'erreur (redirection ou autre)
+      }
+    });
   });
-  filtrerAccidents(); // on va afficher la map par defaut sans filtres
+  $.ajax({
+    url: "php/csrf_token.php", // Assurez-vous d'ajuster le chemin vers votre fichier CSRF PHP
+    type: "GET",
+    success: function(response) {
+        csrfToken = response;
+        $("#csrf_token").val(csrfToken); // Mettre à jour la valeur du champ CSRF dans le formulaire
+        // Une fois le jeton CSRF récupéré, appeler la fonction pour filtrer les accidents
+        filtrerAccidents();
+    },
+    error: function(xhr, status, error) {
+        console.error("Erreur lors de la récupération du jeton CSRF:", error);
+        // Gestion de l'erreur (redirection ou autre)
+    }
+  });
 });
 
 function initializeMap(data) { 

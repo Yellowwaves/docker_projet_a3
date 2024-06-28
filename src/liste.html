@@ -41,7 +41,9 @@
                     <div>
                         <h6 class="p-1 border-bottom">Filtres</h6>
                         <form class="ml-md-2" action="" method="POST">
+
                             <div class="form-group">
+                                <input type="hidden" name="csrf_token" value="">
                                 <label for="bdd" class="form-label">Choix de la BDD</label>
                                 <select id="bdd" name="bdd" class="form-select">
                                     <option value="accident">Original</option>

@@ -2,6 +2,17 @@
 <?php
 include("database.php");
 
+session_start();
+// Vérification du jeton CSRF
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $csrf_token = $_SERVER['HTTP_X_CSRF_TOKEN'];
+    if (!isset($_SESSION['csrf_token']) || $_SESSION['csrf_token'] !== $csrf_token) {
+        // Jeton CSRF invalide, gestion de l'erreur (redirection ou autre)
+        exit('Jeton CSRF invalide');
+    }
+    // Nettoyage du jeton CSRF après utilisation
+    unset($_SESSION['csrf_token']);
+}
 // Récupération des valeurs des cookies
 $age = isset($_COOKIE['age']) ? $_COOKIE['age'] : null;
 $gravite = isset($_COOKIE['gravite']) ? $_COOKIE['gravite'] : null;

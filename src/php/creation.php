@@ -1,6 +1,20 @@
 
 <?php
+    session_start();
+    // Vérification du jeton CSRF
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $csrf_token = $_SERVER['HTTP_X_CSRF_TOKEN'];
+        if (!isset($_SESSION['csrf_token']) || $_SESSION['csrf_token'] !== $csrf_token) {
+            // Jeton CSRF invalide, gestion de l'erreur (redirection ou autre)
 
+            exit('Jeton CSRF invalide');
+        }
+        // Nettoyage du jeton CSRF après utilisation
+        unset($_SESSION['csrf_token']);
+
+    // Traitement des autres données du formulaire
+    // Assurez-vous de récupérer et d'utiliser les données de manière sécurisée
+}
     $age_cond = $_POST['age_cond']; //on recupere avec un port toutes les valeurs envoyees par le ajax
     $date = $_POST['date'];
     $date = isset($_POST['date']) ? $_POST['date'] : null;
@@ -21,4 +35,5 @@
     $nouvel_accident->execute(array($formattedDate, $lat, $lon, $age_cond, $cond_ath, $cond_lum, $etat_surf, $dispo_secu, $id_cat_veh, $ville, $id_type_col));
     $resp['redirect'] = "liste.html"; //on redirige vers la liste
     echo json_encode($resp);
+
 ?>
